@@ -1,5 +1,11 @@
+import HeroSection from '~/sections/Hero';
+
 const IndexPage: React.FC = () => {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <HeroSection />
+    </div>
+  );
 };
 
 export default IndexPage;
