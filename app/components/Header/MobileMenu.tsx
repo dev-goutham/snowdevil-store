@@ -110,18 +110,18 @@ const MobileMenuDrawer: React.FC<MobileMenuDrawerProps> = ({
                       )?.image as unknown as ImageType;
                       return (
                         <Link
-                          className="flex flex-col justify-between"
+                          className="flex flex-col justify-between place-self-center"
                           key={subMenu.url}
                           to={subMenu.url!.split(url)[1]}
                         >
-                          <div className="flex items-center justify-center h-full p-2 border border-gray-200 rounded-md">
+                          <div className="flex items-center h-full rounded-md">
                             <Image
                               data={{
                                 url: image.url,
-                                width: 120,
+                                width: 165,
                                 height: 175,
                               }}
-                              className="w-[120px] block"
+                              className="w-[165px] h-[165px] object-cover rounded-md block"
                             />
                           </div>
                           <div className="mt-3 text-sm font-semibold">

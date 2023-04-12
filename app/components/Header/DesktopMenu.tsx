@@ -63,14 +63,14 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({items, url, collections}) => {
                                 key={item.url}
                                 to={item.url!.split(url)[1]}
                               >
-                                <div className="flex items-center h-full p-2 border border-gray-200 rounded-md">
+                                <div className="flex items-center h-full rounded-md">
                                   <Image
                                     data={{
                                       url: image.url,
                                       width: 165,
                                       height: 175,
                                     }}
-                                    className="w-[165px] block"
+                                    className="w-[165px] h-[165px] object-cover rounded-md block"
                                   />
                                 </div>
                                 <div className="mt-3 text-sm font-semibold">
