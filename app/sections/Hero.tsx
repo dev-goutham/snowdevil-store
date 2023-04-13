@@ -3,15 +3,16 @@
 
 import {Transition} from '@headlessui/react';
 import {Link} from '@remix-run/react';
-import {useInView} from 'react-intersection-observer';
+import {useEffect, useState} from 'react';
 import Button from '~/components/Button';
+import useIsShowing from '~/hooks/useIsShowing';
 
 const HeroSection: React.FC = () => {
-  const [ref, isInView] = useInView();
+  const isShowing = useIsShowing();
 
   return (
-    <section ref={ref}>
-      <Transition.Root show={isInView}>
+    <section>
+      <Transition.Root show={isShowing}>
         <div className="flex flex-col-reverse items-center justify-around mt-12 gap-7 lg:flex-row app-container">
           <Transition.Child
             as={'div'}

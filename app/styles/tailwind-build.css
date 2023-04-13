@@ -604,6 +604,9 @@ video {
 .h-full {
   height: 100%;
 }
+.h-2 {
+  height: 0.5rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -618,6 +621,9 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-2 {
+  width: 0.5rem;
 }
 .max-w-md {
   max-width: 28rem;
@@ -654,6 +660,18 @@ video {
 }
 .translate-y-\[4\.5px\] {
   --tw-translate-y: 4.5px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.-translate-y-12 {
+  --tw-translate-y: -3rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.translate-y-12 {
+  --tw-translate-y: 3rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.translate-y-28 {
+  --tw-translate-y: 7rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .cursor-pointer {
@@ -914,6 +932,12 @@ video {
 .opacity-90 {
   opacity: 0.9;
 }
+.opacity-70 {
+  opacity: 0.7;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -946,6 +970,9 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.delay-200 {
+  transition-delay: 200ms;
+}
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -954,6 +981,9 @@ video {
 }
 .duration-500 {
   transition-duration: 500ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
