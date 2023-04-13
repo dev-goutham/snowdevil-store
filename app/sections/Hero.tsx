@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 
 const HeroSection: React.FC = () => {
   return (
-    <div className="flex flex-col-reverse items-center justify-around mt-12 gap-7 lg:flex-row app-container">
+    <section className="flex flex-col-reverse items-center justify-around mt-12 gap-7 lg:flex-row app-container">
       <div className="max-w-sm md:max-w-lg">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 font md:text-6xl">
           Hit the Slopes in Style with <span>Snow Devil</span>
@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
         src="/images/Hero-3.jpg"
         alt="hero"
       />
-    </div>
+    </section>
   );
 };
 
