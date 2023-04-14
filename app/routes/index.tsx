@@ -4,6 +4,7 @@ import {LoaderArgs} from '@shopify/remix-oxygen';
 import FeaturedCollection from '~/sections/FeaturedCollection';
 import HeroSection from '~/sections/Hero';
 import IncentivesSection from '~/sections/Incentives';
+import TestimonialsSection from '~/sections/TestimonialsSection';
 
 const IndexPage: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const IndexPage: React.FC = () => {
       <HeroSection />
       <IncentivesSection />
       <FeaturedCollection />
+      <TestimonialsSection />
     </div>
   );
 };
