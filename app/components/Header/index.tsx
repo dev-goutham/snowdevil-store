@@ -1,19 +1,11 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable hydrogen/prefer-image-component */
-import {Fragment, useEffect} from 'react';
 import {Link, useLoaderData} from '@remix-run/react';
 import {loader} from '~/root';
 import {FaShoppingCart} from 'react-icons/fa';
-import {
-  MenuItem,
-  Image as ImageType,
-} from '@shopify/hydrogen/storefront-api-types';
-import DesktopMenu from './DesktopMenu';
-import {Popover, Tab, Transition} from '@headlessui/react';
-import {IoClose, IoMenu} from 'react-icons/io5';
-import {Image} from '@shopify/hydrogen';
-import {cx} from '~/utils/classNames';
 import MobileMenu from './MobileMenu';
+import DesktopMenu from './DesktopMenu';
+import CurrencySelector from '../CurrencySelector';
 
 const Header: React.FC = () => {
   const {
@@ -37,6 +29,7 @@ const Header: React.FC = () => {
         </div>
         <DesktopMenu items={items} collections={collections} url={url} />
         <div className="flex items-center gap-6">
+          <CurrencySelector />
           <div>Search</div>
           <div className="flex items-center gap-2">
             <span>

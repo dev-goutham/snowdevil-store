@@ -9,7 +9,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from '@remix-run/react';
 import type {
   Shop,
@@ -19,6 +18,7 @@ import type {
 import styles from './styles/tailwind-build.css';
 import favicon from '../public/snow-devil-logo.svg';
 import Header from './components/Header';
+import {CurrencySelectorProvider} from './context/CurrencySelector';
 
 export const links: LinksFunction = () => {
   return [
@@ -77,12 +77,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <>
+        <CurrencySelectorProvider>
           <Header />
           <Outlet />
           <ScrollRestoration />
           <Scripts />
-        </>
+        </CurrencySelectorProvider>
       </body>
     </html>
   );
