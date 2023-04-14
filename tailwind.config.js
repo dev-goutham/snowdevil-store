@@ -32,7 +32,10 @@ module.exports = {
       sans: ['Inria Sans', 'sans-serif'],
     },
   },
-  plugins: [require('tailwind-scrollbar')({nocompatible: true})],
+  plugins: [
+    require('tailwind-scrollbar')({nocompatible: true}),
+    require('@tailwindcss/typography'),
+  ],
   variants: {
     scrollbar: ['rounded'],
   },
