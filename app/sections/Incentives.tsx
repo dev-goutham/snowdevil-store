@@ -1,8 +1,6 @@
-import {Transition} from '@headlessui/react';
 import DeliveryIcon from '~/components/svg/DeliveryIcon';
 import ExchangeIcon from '~/components/svg/ExchangeIcon';
 import WarrantyIcon from '~/components/svg/WarrantyIcon';
-import useIsShowing from '~/hooks/useIsShowing';
 
 const incentives = [
   {
@@ -26,26 +24,17 @@ const incentives = [
 ];
 
 const IncentivesSection: React.FC = () => {
-  const isShowing = useIsShowing();
   return (
     <section>
-      <Transition
-        as={'div'}
-        enter="transition duration-200 ease-in"
-        enterFrom="opacity-90 translate-y-28"
-        enterTo="opacity-100 translate-y-0 "
-        show={isShowing}
-      >
-        <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-between app-container">
-          {incentives.map(({Icon, heading, paragraph}) => (
-            <div className="flex flex-col items-center max-w-sm " key={heading}>
-              {Icon}
-              <h3 className="mt-2 font-semibold text-gray-600">{heading}</h3>
-              <p className="mt-1 text-center">{paragraph}</p>
-            </div>
-          ))}
-        </div>
-      </Transition>
+      <div className="flex flex-col items-center justify-center gap-4 animate-move-btt md:flex-row md:justify-between app-container">
+        {incentives.map(({Icon, heading, paragraph}) => (
+          <div className="flex flex-col items-center max-w-sm " key={heading}>
+            {Icon}
+            <h3 className="mt-2 font-semibold text-gray-600">{heading}</h3>
+            <p className="mt-1 text-center">{paragraph}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
