@@ -4,7 +4,6 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useLayoutEffect,
   useState,
 } from 'react';
 
@@ -42,7 +41,7 @@ export const CurrencySelectorProvider: React.FC<PropsWithChildren> = ({
   const [exchangeRates, setExchangeRates] =
     useState<ICurrencyContext['exchangeRates']>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const storedCurrency =
       (window.localStorage.getItem('currency') as CurrencyOptions) || 'USD';
     setSelected(storedCurrency);
