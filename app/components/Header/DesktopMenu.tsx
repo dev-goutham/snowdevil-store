@@ -1,11 +1,11 @@
 import {Popover, Transition} from '@headlessui/react';
-import {Link} from '@remix-run/react';
+import {Link, useNavigate, useNavigation} from '@remix-run/react';
 import {Image} from '@shopify/hydrogen';
 import {
   MenuItem,
   Image as ImageType,
 } from '@shopify/hydrogen/storefront-api-types';
-import {Fragment} from 'react';
+import {Fragment, useEffect} from 'react';
 import {loader} from '~/root';
 
 interface DesktopMenuProps {
@@ -15,6 +15,8 @@ interface DesktopMenuProps {
 }
 
 const DesktopMenu: React.FC<DesktopMenuProps> = ({items, url, collections}) => {
+  const navigate = useNavigate();
+
   return (
     <nav className="items-center justify-center flex-grow hidden gap-6 lg:flex">
       {items.map((item) => {
@@ -27,7 +29,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({items, url, collections}) => {
         } else {
           return (
             <Popover key={item.title}>
-              {({open}) => (
+              {({open, close}) => (
                 <>
                   <Popover.Button
                     className={
@@ -46,7 +48,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({items, url, collections}) => {
                     enter="transition ease-out duration-200"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
-                    leave="transition ease-in duration-150"
+                    leave="transition ease-in duration-50"
                     leaveFrom="opacity-100 "
                     leaveTo="opacity-0"
                   >
@@ -62,6 +64,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({items, url, collections}) => {
                                 className="flex flex-col justify-between"
                                 key={item.url}
                                 to={item.url!.split(url)[1]}
+                                onClick={close}
                               >
                                 <div className="flex items-center h-full rounded-md">
                                   <Image

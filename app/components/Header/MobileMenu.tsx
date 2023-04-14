@@ -113,6 +113,7 @@ const MobileMenuDrawer: React.FC<MobileMenuDrawerProps> = ({
                           className="flex flex-col justify-between place-self-center"
                           key={subMenu.url}
                           to={subMenu.url!.split(url)[1]}
+                          onClick={close}
                         >
                           <div className="flex items-center h-full rounded-md">
                             <Image
@@ -142,6 +143,7 @@ const MobileMenuDrawer: React.FC<MobileMenuDrawerProps> = ({
                   className="block my-5 text-lg font-semibold hover:text-gray-700"
                   key={item.title}
                   to={item.url!.split(url)[1]}
+                  onClick={close}
                 >
                   {item.title}
                 </Link>
