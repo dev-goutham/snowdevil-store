@@ -23,7 +23,7 @@ html::-webkit-scrollbar-track {
 }
 
 body {
-  @apply text-gray-700;
+  @apply flex flex-col min-h-screen text-gray-700 items-between;
 }
 
 .app-container {

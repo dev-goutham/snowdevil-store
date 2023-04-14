@@ -19,6 +19,7 @@ import styles from './styles/tailwind-build.css';
 import favicon from '../public/snow-devil-logo.svg';
 import Header from './components/Header';
 import {CurrencySelectorProvider} from './context/CurrencySelector';
+import Footer from './components/Footer';
 
 export const links: LinksFunction = () => {
   return [
@@ -79,7 +80,10 @@ export default function App() {
       <body>
         <CurrencySelectorProvider>
           <Header />
-          <Outlet />
+          <main className="flex-grow">
+            <Outlet />
+          </main>
+          <Footer />
           <ScrollRestoration />
           <Scripts />
         </CurrencySelectorProvider>
