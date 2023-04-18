@@ -1,11 +1,10 @@
-import {Popover, Transition, Tab} from '@headlessui/react';
+import {Popover, Tab} from '@headlessui/react';
 import {Link} from '@remix-run/react';
 import {Image} from '@shopify/hydrogen';
 import {
   MenuItem,
   Image as ImageType,
 } from '@shopify/hydrogen/storefront-api-types';
-import {Fragment, useEffect} from 'react';
 import {IoClose, IoMenu} from 'react-icons/io5';
 import {loader} from '~/root';
 import {cx} from '~/utils/classNames';
@@ -41,15 +40,6 @@ const MobileMenuDrawer: React.FC<MobileMenuDrawerProps> = ({
   collections,
   url,
 }) => {
-  useEffect(() => {
-    const app = document.querySelector('body');
-    if (open) {
-      app!.style.overflow = 'hidden';
-    } else {
-      app!.style.overflow = 'auto';
-    }
-  }, [open]);
-
   const menuWithSubmenu: MenuItem[] = [];
   const menuItems: MenuItem[] = [];
 
@@ -153,7 +143,7 @@ const MobileMenuDrawer: React.FC<MobileMenuDrawerProps> = ({
             <hr className="my-5" />
           </div>
         </Popover.Panel>
-      </Transition>
+      </Drawer>
     </>
   );
 };
