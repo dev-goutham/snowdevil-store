@@ -23,7 +23,7 @@ html::-webkit-scrollbar-track {
 }
 
 body {
-  @apply flex flex-col min-h-screen text-gray-700;
+  @apply relative flex flex-col min-h-screen text-gray-700;
 }
 
 .app-container {
@@ -38,4 +38,41 @@ body {
   position: absolute;
   left: 0;
   top: 42.5px;
+}
+
+.horizontal-slider {
+  width: 100%;
+  max-width: 500px;
+  height: 18px;
+  margin-top: 12px;
+  margin-bottom: 30px;
+}
+
+.horizontal-slider .example-track {
+  top: 8.5px;
+  height: 5px;
+  border-radius: 8px;
+}
+
+.example-track.example-track-0 {
+  background: rgb(156 163 175);
+}
+
+.example-track.example-track-1 {
+  background: #3b82f6;
+}
+
+.example-track.example-track-2 {
+  background: rgb(156 163 175);
+}
+
+.horizontal-slider .example-thumb {
+  top: 1px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: rgb(29 78 216);
+  cursor: pointer;
+  box-sizing: border-box;
 }
