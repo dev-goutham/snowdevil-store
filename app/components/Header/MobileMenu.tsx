@@ -9,6 +9,7 @@ import {Fragment, useEffect} from 'react';
 import {IoClose, IoMenu} from 'react-icons/io5';
 import {loader} from '~/root';
 import {cx} from '~/utils/classNames';
+import Drawer from '../Drawer';
 
 interface MobileMenuProps {
   items: MenuItem[];
@@ -66,8 +67,8 @@ const MobileMenuDrawer: React.FC<MobileMenuDrawerProps> = ({
         <IoMenu className="w-8 h-8 text-gray-500 translate-y-[4.5px] hover:text-gray-700 focus:text-gray-700" />
       </Popover.Button>
       <Popover.Overlay className="fixed inset-0 bg-black opacity-40" />
-      <Transition
-        as={Fragment}
+      <Drawer
+        open={open}
         enter="transition ease-out duration-200"
         enterFrom="-translate-x-[448px]"
         enterTo="translate-x-0"
