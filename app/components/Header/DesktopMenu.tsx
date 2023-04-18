@@ -50,7 +50,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({items, url, collections}) => {
                     leaveFrom="opacity-100 "
                     leaveTo="opacity-0"
                   >
-                    <Popover.Panel className="absolute h-[310px] shadow-md text-gray-700 top-[65px] duration-500 transition-opacity opacity-100  bg-white left-0 right-0 w-full">
+                    <Popover.Panel className="absolute z-10 h-[310px] shadow-md text-gray-700 top-[65px] duration-500 transition-opacity opacity-100  bg-white left-0 right-0 w-full">
                       <div className="app-container">
                         <div className="flex justify-around py-12 border-t border-t-gray-200">
                           {item.items.map((item) => {
