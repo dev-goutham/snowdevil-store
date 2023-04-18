@@ -27,7 +27,7 @@ const navigation = [
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white">
-      <div className="px-6 py-12 mx-auto max-w-7xl md:flex md:items-center md:justify-between lg:px-8">
+      <div className="flex justify-between py-12 app-container">
         <div className="flex justify-center space-x-6 md:order-2">
           {navigation.map((item) => (
             <a
