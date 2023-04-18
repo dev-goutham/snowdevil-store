@@ -37,6 +37,9 @@ const INDEX_QUERY = `#graphql
       nodes {
         title
         description
+        seo{
+          description
+        }
         priceRange {
           maxVariantPrice {
             amount
