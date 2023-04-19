@@ -2,6 +2,7 @@ import {
   Filter,
   PageInfo,
   Product,
+  ProductFilter,
 } from '@shopify/hydrogen/storefront-api-types';
 import {AppLoadContext} from '@shopify/remix-oxygen';
 import {getPageCursor} from './getPageCursor.server';
@@ -10,6 +11,7 @@ interface Args {
   context: AppLoadContext;
   handle: string;
   pageNumber: number;
+  filters: ProductFilter[];
 }
 
 interface ReturnValue {
@@ -35,12 +37,13 @@ export const getCollectionProducts = async (args: Args) => {
   }
 };
 
-const getProducts = async ({context, handle}: Args) => {
+const getProducts = async ({context, handle, filters}: Args) => {
   const {collection} = await context.storefront.query<ReturnValue>(
     COLLECTION_QUERY,
     {
       variables: {
         handle,
+        filters,
       },
     },
   );
@@ -50,6 +53,7 @@ const getProductsWithCursor = async ({
   context,
   handle,
   cursor,
+  filters,
 }: Args & {cursor: string}) => {
   const {collection} = await context.storefront.query<ReturnValue>(
     COLLECTION_QUERY_WITH_CURSOR,
@@ -57,6 +61,7 @@ const getProductsWithCursor = async ({
       variables: {
         handle,
         cursor,
+        filters,
       },
     },
   );
@@ -64,10 +69,10 @@ const getProductsWithCursor = async ({
 };
 
 const COLLECTION_QUERY = `#graphql
-query collection($handle: String!) {
+query collection($handle: String!, $filters: [ProductFilter!]) {
   collection(handle: $handle) {
     id
-    products(first: 9) {
+    products(first: 9, filters: $filters) {
       filters{
         label
         type
@@ -110,10 +115,10 @@ query collection($handle: String!) {
 }
 `;
 const COLLECTION_QUERY_WITH_CURSOR = `#graphql
-query collection($handle: String!, $cursor: String!) {
+query collection($handle: String!, $cursor: String!, $filters: [ProductFilter!]) {
   collection(handle: $handle) {
     id
-    products(first: 9, after: $cursor) {
+    products(first: 9, after: $cursor, filters: $filters) {
       pageInfo {
         hasNextPage
         hasPreviousPage
