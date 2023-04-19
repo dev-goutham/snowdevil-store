@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useCurrencySelector} from '~/context/CurrencySelector';
 
-const useCurrency = (amount: number) => {
+const useCurrency = (amount: number, roundUp = false) => {
   const {selected, exchangeRates} = useCurrencySelector();
   const [formattedAmount, setFormattedAmount] = useState('');
 
@@ -11,14 +11,14 @@ const useCurrency = (amount: number) => {
         new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: selected,
-        }).format(amount * exchangeRates[selected]),
+        }).format(Math.ceil(amount * exchangeRates[selected])),
       );
     } else {
       setFormattedAmount(
         new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: selected,
-        }).format(amount),
+        }).format(Math.ceil(amount)),
       );
     }
   }, [amount, selected, exchangeRates]);
