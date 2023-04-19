@@ -50,6 +50,7 @@ const PriceRangeSlider: React.FC<{
           const maxPrice = Math.ceil((maxVal * max) / 100);
           const priceString = `${minPrice}-${maxPrice}`;
           setNewParamsValue('priceRange', priceString);
+          setNewParamsValue('page', '1');
         }}
       />
     </fieldset>

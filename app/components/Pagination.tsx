@@ -1,4 +1,5 @@
 import {Link} from '@remix-run/react';
+import {useManipulateSearchParams} from '~/hooks/useManipulateSearchParams';
 import {cx} from '~/utils/classNames';
 
 interface Props {
@@ -12,6 +13,8 @@ const Pagination: React.FC<Props> = ({
   hasNextPage,
   currentPage,
 }) => {
+  const {setNewParamsValue} = useManipulateSearchParams();
+
   return (
     <nav
       aria-label="Pagination"
@@ -20,6 +23,10 @@ const Pagination: React.FC<Props> = ({
       <div className="flex-1 min-w-0">
         <Link
           to={`?page=${currentPage - 1}`}
+          onClick={(e) => {
+            e.preventDefault();
+            setNewParamsValue('page', String(currentPage - 1));
+          }}
           aria-disabled={!hasPreviousPage}
           className={cx(
             'inline-flex items-center h-10 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600',
@@ -34,6 +41,10 @@ const Pagination: React.FC<Props> = ({
         <Link
           to={`?page=${currentPage + 1}`}
           aria-disabled={!hasNextPage}
+          onClick={(e) => {
+            e.preventDefault();
+            setNewParamsValue('page', String(currentPage + 1));
+          }}
           className={cx(
             'inline-flex items-center h-10 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600',
             !hasNextPage ? 'opacity-30 pointer-events-none' : '',

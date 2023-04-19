@@ -15,18 +15,22 @@ export const useManipulateSearchParams = () => {
 
   const removeFromSearchParams = useCallback(
     (str: string | RegExp) => {
-      const newQueryString = searchParams.toString().replace(str, '');
-      setSearchParams(newQueryString);
+      setSearchParams((prev) => {
+        const newUrl = new URLSearchParams(prev.toString().replace(str, ''));
+        return newUrl;
+      });
     },
-    [searchParams, setSearchParams],
+    [setSearchParams],
   );
 
   const setNewParamsValue = useCallback(
     (key: string, value: string) => {
-      searchParams.set(key, value);
-      setSearchParams(searchParams);
+      setSearchParams((prev) => {
+        prev.set(key, value);
+        return prev;
+      });
     },
-    [searchParams, setSearchParams],
+    [setSearchParams],
   );
 
   return {appendToSearchParams, removeFromSearchParams, setNewParamsValue};

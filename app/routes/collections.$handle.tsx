@@ -85,7 +85,7 @@ export const loader = async ({params, context, request}: LoaderArgs) => {
   });
 
   try {
-    const {id, products} = await getCollectionProducts({
+    const {products} = await getCollectionProducts({
       context,
       handle,
       pageNumber,
@@ -102,9 +102,7 @@ export const loader = async ({params, context, request}: LoaderArgs) => {
       };
     };
 
-    const token = context.env.SHOPIFY_ADMIN_TOKEN;
-    const storeUrl = context.env.PUBLIC_STORE_DOMAIN;
-    const apiVersion = context.env.PUBLIC_STOREFRONT_API_VERSION;
+    console.log(priceRange.price);
 
     return {
       pageInfo: products.pageInfo,

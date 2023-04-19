@@ -11,7 +11,7 @@ const FiltersForm: React.FC<Props> = ({
   priceRange,
   selectedPriceRange,
 }) => {
-  const {appendToSearchParams, removeFromSearchParams} =
+  const {appendToSearchParams, removeFromSearchParams, setNewParamsValue} =
     useManipulateSearchParams();
 
   return (
@@ -74,12 +74,16 @@ const FiltersForm: React.FC<Props> = ({
                                 id={`${section.id}-${optionIdx}-mobile`}
                                 name={`${section.id}[]`}
                                 onChange={(e) => {
+                                  setNewParamsValue('page', '1');
                                   if (e.target.checked) {
                                     appendToSearchParams(e.target.value);
                                   } else {
-                                    const [key, value] = Object.entries(
+                                    const [key, val] = Object.entries(
                                       JSON.parse(e.target.value),
                                     )[0];
+                                    const value = (val as string)
+                                      .split(' ')
+                                      .join('+');
                                     const paramsToRemove = `${key}=${value}`;
                                     removeFromSearchParams(paramsToRemove);
                                   }
