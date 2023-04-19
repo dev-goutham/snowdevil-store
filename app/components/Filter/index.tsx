@@ -45,7 +45,7 @@ const Filters: React.FC<Props> = ({
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-[400px]"
               >
-                <Popover.Panel className="w-[360px] overflow-y-scroll v-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-blue-600 p-8 scroll-smooth snap-y scrollbar-track-gray-200 max-w-[360px] bg-white shadow-sm right-0 top-0 bottom-0 absolute  min-h-screen">
+                <Popover.Panel className="w-[360px] h-screen overflow-y-scroll  v-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-thumb-blue-600 p-8 scroll-smooth snap-y scrollbar-track-gray-200 max-w-[360px] bg-white shadow-sm right-0 top-0 bottom-0 absolute  max-h-screen">
                   <button onClick={close} className="absolute top-5 left-5">
                     <IoClose className="w-8 h-8" />
                   </button>
