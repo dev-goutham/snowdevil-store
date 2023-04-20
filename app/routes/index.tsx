@@ -40,6 +40,15 @@ const INDEX_QUERY = `#graphql
         seo{
           description
         }
+        availableForSale
+        compareAtPriceRange{
+          maxVariantPrice{
+            amount
+          }
+          minVariantPrice{
+            amount
+          }
+        }
         priceRange {
           maxVariantPrice {
             amount
