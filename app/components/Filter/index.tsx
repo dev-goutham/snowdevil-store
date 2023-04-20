@@ -15,6 +15,7 @@ const Filters: React.FC<Props> = ({
     <div>
       <div className="hidden w-64 mr-6 lg:block">
         <h3 className="mb-4 text-xl font-semibold text-gray-400">Filters</h3>
+
         <FiltersForm
           priceRange={priceRange}
           selectedFilters={selectedFilters}

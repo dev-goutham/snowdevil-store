@@ -107,7 +107,7 @@ export const loader = async ({params, context, request}: LoaderArgs) => {
       products: products.nodes,
       filters: products.filters,
       selectedFilters,
-      selectedPriceRange,
+      selectedPriceRange: selectedPriceRange as [number, number] | null,
       priceRange,
     };
   } catch (error) {
