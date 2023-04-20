@@ -27,10 +27,12 @@ const Pagination: React.FC<Props> = ({
             e.preventDefault();
             setNewParamsValue('page', String(currentPage - 1));
           }}
-          aria-disabled={!hasPreviousPage}
+          aria-disabled={!hasPreviousPage && currentPage <= 1}
           className={cx(
             'inline-flex items-center h-10 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-100 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-25 focus:ring-offset-1 focus:ring-offset-indigo-600',
-            !hasPreviousPage ? 'opacity-30 pointer-events-none' : '',
+            !hasPreviousPage && currentPage <= 1
+              ? 'opacity-30 pointer-events-none'
+              : '',
           )}
         >
           Previous

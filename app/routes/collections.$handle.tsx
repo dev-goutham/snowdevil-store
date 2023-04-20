@@ -102,8 +102,6 @@ export const loader = async ({params, context, request}: LoaderArgs) => {
       };
     };
 
-    console.log(priceRange.price);
-
     return {
       pageInfo: products.pageInfo,
       products: products.nodes,
