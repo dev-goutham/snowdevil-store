@@ -13,9 +13,9 @@ const ProductCard: React.FC<Props> = ({product}) => {
   const compareAtPriceMin = +product.compareAtPriceRange.minVariantPrice.amount;
   const priceRangeMin = +product.priceRange.minVariantPrice.amount;
   const amount = useCurrency(priceRangeMin);
+  const compareAtAmount = useCurrency(compareAtPriceMin);
   const soldOut = !product.availableForSale;
   const isOnSale = priceRangeMin < compareAtPriceMin;
-  console.log(product.title, product.availableForSale);
   return (
     <Link
       to={`/product/${product.handle}`}
@@ -49,7 +49,14 @@ const ProductCard: React.FC<Props> = ({product}) => {
         <p className="mb-3 text-sm tracking-wider text-gray-500 line-clamp-3">
           {product.seo.description || getDescription(product.description)}
         </p>
-        <p className="text-lg font-semibold text-indigo-700">{amount}</p>
+        <p className="text-lg font-semibold tracking-wide text-indigo-700">
+          {isOnSale && (
+            <span className="mr-2 line-through opacity-60">
+              {compareAtAmount}
+            </span>
+          )}
+          <span>{amount}</span>
+        </p>
       </div>
     </Link>
   );
