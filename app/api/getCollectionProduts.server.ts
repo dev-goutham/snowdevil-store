@@ -101,6 +101,15 @@ query collection($handle: String!, $filters: [ProductFilter!]) {
           height
           width
         }
+        availableForSale
+        compareAtPriceRange{
+          maxVariantPrice{
+            amount
+          }
+          minVariantPrice{
+            amount
+          }
+        }
         priceRange {
           maxVariantPrice {
             amount
@@ -146,6 +155,15 @@ query collection($handle: String!, $cursor: String!, $filters: [ProductFilter!])
           url
           height
           width
+        }
+        availableForSale
+        compareAtPriceRange{
+          maxVariantPrice{
+            amount
+          }
+          minVariantPrice{
+            amount
+          }
         }
         priceRange {
           maxVariantPrice {

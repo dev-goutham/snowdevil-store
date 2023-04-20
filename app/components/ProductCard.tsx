@@ -10,16 +10,31 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = ({product}) => {
-  const amount = useCurrency(+product.priceRange.minVariantPrice.amount);
-
+  const compareAtPriceMin = +product.compareAtPriceRange.minVariantPrice.amount;
+  const priceRangeMin = +product.priceRange.minVariantPrice.amount;
+  const amount = useCurrency(priceRangeMin);
+  const soldOut = !product.availableForSale;
+  const isOnSale = priceRangeMin < compareAtPriceMin;
+  console.log(product.title, product.availableForSale);
   return (
     <Link
       to={`/product/${product.handle}`}
       className="flex flex-col gap-4 p-4 border border-gray-200 shadow-md shrink-0"
     >
-      <div className="flex items-center justify-center max-h-[410px] min-h-[410px]">
+      <div className="flex items-center relative justify-center max-h-[410px] min-h-[410px]">
+        {isOnSale && !soldOut && (
+          <div className="absolute px-4 py-1 text-xs bg-green-300 bg-opacity-30 top-2 right-2 rounded-xl ">
+            Sale
+          </div>
+        )}
+        {soldOut && (
+          <div className="absolute px-4 py-1 text-xs bg-black bg-opacity-30 top-2 right-2 rounded-xl ">
+            Sold Out
+          </div>
+        )}
+
         <Image
-          className="block w-72 max-h-[410px] object-cover"
+          className="block hover:scale-110 w-72 max-h-[410px] object-cover transition-all duration-150 ease-in-out"
           data={{
             url: product.featuredImage!.url,
             altText: product.featuredImage?.altText || '',
