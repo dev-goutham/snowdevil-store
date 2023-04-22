@@ -1,4 +1,5 @@
 import {Link} from '@remix-run/react';
+import {RefObject} from 'react';
 import {useManipulateSearchParams} from '~/hooks/useManipulateSearchParams';
 import {cx} from '~/utils/classNames';
 
@@ -6,14 +7,24 @@ interface Props {
   currentPage: number;
   hasPreviousPage: boolean;
   hasNextPage: boolean;
+  scrollTo?: RefObject<Element>;
 }
 
 const Pagination: React.FC<Props> = ({
   hasPreviousPage,
   hasNextPage,
   currentPage,
+  scrollTo,
 }) => {
   const {setNewParamsValue} = useManipulateSearchParams();
+
+  const scrollToRef = () => {
+    if (scrollTo) {
+      scrollTo.current?.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <nav
@@ -25,6 +36,7 @@ const Pagination: React.FC<Props> = ({
           to={`?page=${currentPage - 1}`}
           onClick={(e) => {
             e.preventDefault();
+            scrollToRef();
             setNewParamsValue('page', String(currentPage - 1));
           }}
           aria-disabled={!hasPreviousPage && currentPage <= 1}
@@ -45,6 +57,7 @@ const Pagination: React.FC<Props> = ({
           aria-disabled={!hasNextPage}
           onClick={(e) => {
             e.preventDefault();
+            scrollToRef();
             setNewParamsValue('page', String(currentPage + 1));
           }}
           className={cx(

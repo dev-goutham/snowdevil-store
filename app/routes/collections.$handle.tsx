@@ -1,6 +1,7 @@
 import {useLoaderData, useSearchParams} from '@remix-run/react';
 import {ProductFilter} from '@shopify/hydrogen/storefront-api-types';
 import {LoaderArgs} from '@shopify/remix-oxygen';
+import {useRef} from 'react';
 import {getCollectionProducts} from '~/api/getCollectionProduts.server';
 import Filters from '~/components/Filter';
 import Pagination from '~/components/Pagination';
@@ -21,8 +22,13 @@ const CollectionsPage: React.FC = () => {
   const hasPreviousPage = pageInfo.hasPreviousPage;
   const hasNextPage = pageInfo.hasNextPage;
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="flex flex-col my-12 app-container lg:justify-between lg:flex-row lg:my-24">
+    <div
+      ref={scrollRef}
+      className="flex flex-col my-12 app-container lg:justify-between lg:flex-row lg:my-24"
+    >
       <Filters
         priceRange={priceRange}
         selectedFilters={selectedFilters}
@@ -39,6 +45,7 @@ const CollectionsPage: React.FC = () => {
           currentPage={+currentPage}
           hasNextPage={hasNextPage}
           hasPreviousPage={hasPreviousPage}
+          scrollTo={scrollRef}
         />
       </div>
     </div>
