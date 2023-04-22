@@ -3,7 +3,7 @@ import {cx} from '~/utils/classNames';
 
 interface Props extends ComponentProps<'button'> {
   impact?: 'bold' | 'light' | 'none';
-  size?: 'large' | 'medium' | 'small';
+  size?: 'large' | 'medium' | 'small' | 'full';
   shape?: 'square' | 'rounded' | 'pill';
   tone?: 'default' | 'danger' | 'success';
   className?: string;
@@ -39,6 +39,7 @@ const sizeClasses: Record<NonNullable<Props['size']>, string> = {
   small: 'px-3 py-2 text-sm',
   medium: 'px-5 py-3 text-base',
   large: 'px-7 py-3 text-lg',
+  full: 'w-full px-7 py-3 text-lg',
 };
 
 const roundedClasses: Record<NonNullable<Props['shape']>, string> = {

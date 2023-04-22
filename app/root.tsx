@@ -20,6 +20,7 @@ import favicon from '../public/snow-devil-logo.svg';
 import Header from './components/Header';
 import {CurrencySelectorProvider} from './context/CurrencySelector';
 import Footer from './components/Footer';
+import carouselStyles from 'react-multi-carousel/lib/styles.css';
 
 export const links: LinksFunction = () => {
   return [
@@ -40,6 +41,10 @@ export const links: LinksFunction = () => {
     {
       rel: 'preconnect',
       href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'stylesheet',
+      href: carouselStyles,
     },
   ];
 };
@@ -84,7 +89,15 @@ export default function App() {
             <Outlet />
           </main>
           <Footer />
-          <ScrollRestoration />
+          <ScrollRestoration
+            getKey={(location) => {
+              if (!/\/collections\//i.test(location.pathname)) {
+                return location.pathname;
+              } else {
+                return null;
+              }
+            }}
+          />
           <Scripts />
         </CurrencySelectorProvider>
       </body>
