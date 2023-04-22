@@ -68,6 +68,7 @@ query product($handle: String!, $selectedOptions: [SelectedOptionInput!]!) {
     id
     title
     description
+    vendor
     seo {
       description
     }

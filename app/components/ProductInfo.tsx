@@ -3,6 +3,7 @@ import {cx} from '~/utils/classNames';
 
 interface Props {
   title: string;
+  vendor: string;
   price: number;
   compareAtPrice: number;
   description: string;
@@ -13,6 +14,7 @@ interface Props {
 const ProductInfo: React.FC<Props> = ({
   price,
   title,
+  vendor,
   compareAtPrice,
   description,
   availabilityStatus,
@@ -23,6 +25,7 @@ const ProductInfo: React.FC<Props> = ({
 
   return (
     <div className="px-4 mt-10 sm:mt-16 sm:px-0 lg:mt-0">
+      <h4 className="text-sm font-semibold text-gray-500">{vendor}</h4>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold tracking-tight text-gray-700">
           <span className="block">{title}</span>

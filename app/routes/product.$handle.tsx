@@ -31,6 +31,7 @@ const Product: React.FC = () => {
           <div className="max-w-md">
             <ProductInfo
               title={product.title}
+              vendor={product.vendor}
               price={+(selectedVariant?.price?.amount || 0)}
               compareAtPrice={+(selectedVariant?.compareAtPrice?.amount || 0)}
               description={product.seo.description || product.description}
@@ -56,14 +57,6 @@ const Product: React.FC = () => {
         <h4 className="mb-4 text-2xl font-bold text-gray-600">
           You might also like
         </h4>
-        {/* <div className="flex gap-6">
-          {productRecommendations.map((recommendedProduct) => (
-            <ProductCard
-              key={recommendedProduct.handle}
-              product={recommendedProduct}
-            />
-          ))}
-        </div> */}
         <ProductCarousel products={productRecommendations} />
       </div>
     </section>
