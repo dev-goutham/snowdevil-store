@@ -1,34 +1,44 @@
 import {useLoaderData} from '@remix-run/react';
+import {ShopPayButton} from '@shopify/hydrogen';
 import {
   Product,
   SelectedOptionInput,
 } from '@shopify/hydrogen/storefront-api-types';
 import {LoaderArgs} from '@shopify/remix-oxygen';
+import {useRef} from 'react';
 import {getProduct} from '~/api/getProduct.server';
 import {getProductRecommendations} from '~/api/getProductRecommendations.server';
+import AddToCart from '~/components/AddToCart';
 import Button from '~/components/Button';
-import ProductCard from '~/components/ProductCard';
 import ProductImages from '~/components/ProductImages';
 import ProductInfo from '~/components/ProductInfo';
 import ProductVariants from '~/components/ProductVariants';
 import ProductCarousel from '~/components/ProductsCarousel';
+import {useElementWidth} from '~/hooks/useElementWidth';
 import {useProductVariants} from '~/hooks/useProductVariants';
 
 const Product: React.FC = () => {
-  const {product, selectedOptionsFromParams, productRecommendations} =
-    useLoaderData<typeof loader>();
+  const {
+    product,
+    selectedOptionsFromParams,
+    productRecommendations,
+    storeDomain,
+  } = useLoaderData<typeof loader>();
 
   const {availabilityStatus, selectOption, selectedVariant, selectedOptions} =
     useProductVariants(product as Product, selectedOptionsFromParams);
 
+  const productInfoRef = useRef<HTMLDivElement | null>(null);
+  const productInfoWidth = useElementWidth(productInfoRef);
+
   return (
     <section className="flex flex-col items-center">
-      <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="flex flex-col gap-10 lg:flex-row">
+      <div className="max-w-2xl px-4 py-16 mx-auto lg:px-0 sm:py-24 sm:px-6 lg:max-w-7xl ">
+        <div className="flex flex-col gap-6 lg:gap-12 lg:flex-row">
           <div>
             <ProductImages images={product.images} />
           </div>
-          <div className="max-w-md">
+          <div ref={productInfoRef} className="max-w-xl">
             <ProductInfo
               title={product.title}
               vendor={product.vendor}
@@ -45,10 +55,24 @@ const Product: React.FC = () => {
                 selectedOptions={selectedOptions}
               />
             </div>
-            <div className="my-8">
-              <Button disabled={availabilityStatus !== 'in stock'} size="full">
-                Add To Cart
-              </Button>
+            <div className="w-full my-8 space-y-4">
+              {availabilityStatus === 'in stock' &&
+              selectedVariant !== undefined ? (
+                <>
+                  <AddToCart variantId={selectedVariant.id} />
+                  <ShopPayButton
+                    variantIds={[selectedVariant.id]}
+                    width={productInfoWidth ? `${productInfoWidth}px` : '100%'}
+                    storeDomain={storeDomain}
+                  />
+                </>
+              ) : (
+                <>
+                  <Button className="capitalize" disabled size="full">
+                    {availabilityStatus}
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -79,7 +103,7 @@ export const loader = async ({params, context, request}: LoaderArgs) => {
       value,
     }),
   ) as SelectedOptionInput[];
-  const product = await getProduct({
+  const {product, storeDomain} = await getProduct({
     handle,
     context,
     selectedOptions: selectedOptionsFromParams,
@@ -93,5 +117,6 @@ export const loader = async ({params, context, request}: LoaderArgs) => {
     product,
     selectedOptionsFromParams,
     productRecommendations,
+    storeDomain,
   };
 };
