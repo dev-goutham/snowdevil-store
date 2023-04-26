@@ -16,6 +16,11 @@ const ProductCard: React.FC<Props> = ({product}) => {
   const compareAtAmount = useCurrency(compareAtPriceMin);
   const soldOut = !product.availableForSale;
   const isOnSale = priceRangeMin < compareAtPriceMin;
+
+  const width = product.featuredImage!.width!;
+  const height = product.featuredImage!.height!;
+  const imageHeight = Math.min(height * (304 / width), 390);
+
   return (
     <Link
       to={`/product/${product.handle}`}
@@ -34,12 +39,16 @@ const ProductCard: React.FC<Props> = ({product}) => {
         )}
 
         <Image
-          className="block hover:scale-110 w-72 max-h-[410px] object-cover transition-all duration-150 ease-in-out"
+          style={{
+            width: 304,
+            height: imageHeight,
+          }}
+          className="block object-cover transition-all duration-150 ease-in-out hover:scale-110"
           data={{
             url: product.featuredImage!.url,
             altText: product.featuredImage?.altText || '',
-            height: 410,
-            width: 320,
+            width: 304,
+            height: imageHeight,
           }}
         />
       </div>
